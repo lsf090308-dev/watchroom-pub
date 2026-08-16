@@ -36,6 +36,7 @@ fetch('redirect.json?t='+Date.now()).then(function(r){return r.json()}).then(fun
 fetch('update.json?t='+Date.now()).then(function(r){return r.json()}).then(function(j){
   if(j.apk){ document.getElementById('dl').href=j.apk; }
   if(j.vn){ document.getElementById('ver').textContent=j.vn; }
+  if(j.updated){ document.getElementById('t').textContent=j.updated; }
 }).catch(function(){});
 </script>
 </body>
