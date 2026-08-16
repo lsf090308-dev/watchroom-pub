@@ -28,7 +28,7 @@ h1{font-size:26px;margin-bottom:8px;color:#fff}
 fetch('redirect.json?t='+Date.now()).then(function(r){return r.json()}).then(function(j){
   if(j.tunnel){
     var e=document.getElementById('enter');
-    e.href=j.tunnel+'/landing';
+    e.href=j.tunnel+'/';
     var t=document.getElementById('t');
     t.textContent=j.updated||'';
   }
