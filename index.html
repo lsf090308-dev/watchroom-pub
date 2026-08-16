@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html lang="zh">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>一起看放映室</title>
+<style>
+*{margin:0;padding:0;box-sizing:border-box}
+body{background:#0a1020;color:#e8ecf5;font-family:-apple-system,BlinkMacSystemFont,'Segoe UI',Roboto,sans-serif;min-height:100vh;display:flex;align-items:center;justify-content:center}
+.card{width:min(480px,92vw);padding:40px 28px;border:1px solid #1e2a44;border-radius:20px;background:linear-gradient(160deg,#0d1528,#0a1020);box-shadow:0 20px 60px rgba(0,0,0,.5)}
+h1{font-size:26px;margin-bottom:8px;color:#fff}
+.sub{color:#8b98b8;font-size:14px;margin-bottom:28px}
+.btn{display:block;text-align:center;padding:14px;border-radius:12px;font-size:16px;text-decoration:none;margin-bottom:12px}
+.btn.main{background:#ff5c8a;color:#fff;font-weight:700}
+.btn.ghost{border:1px solid #33406a;color:#c7d0e8}
+.meta{color:#6b7694;font-size:12px;text-align:center;margin-top:18px}
+</style>
+</head>
+<body>
+<div class="card">
+  <h1>一起看放映室</h1>
+  <div class="sub">入口固定不变 你随时能进来</div>
+  <a class="btn main" id="enter" href="#">进入放映厅</a>
+  <a class="btn ghost" id="dl" href="#">下载最新APP</a>
+  <div class="meta">当前版本 <span id="ver">…</span> · 更新时间 <span id="t">…</span></div>
+</div>
+<script>
+fetch('redirect.json?t='+Date.now()).then(function(r){return r.json()}).then(function(j){
+  if(j.tunnel){
+    var e=document.getElementById('enter');
+    e.href=j.tunnel+'/landing';
+    var t=document.getElementById('t');
+    t.textContent=j.updated||'';
+  }
+}).catch(function(){});
+fetch('update.json?t='+Date.now()).then(function(r){return r.json()}).then(function(j){
+  if(j.apk){ document.getElementById('dl').href=j.apk; }
+  if(j.vn){ document.getElementById('ver').textContent=j.vn; }
+}).catch(function(){});
+</script>
+</body>
+</html>
